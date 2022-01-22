@@ -26,6 +26,16 @@ const init = async () => {
     }
   })
 
+  server.route({
+    method: 'GET',
+    path: '/js/{param*}',
+    handler: {
+      directory: {
+        path: '../js'
+      }
+    }
+  })
+
   await server.start()
 
   console.log(`Live at http://localhost:${process.env.PORT}`)
