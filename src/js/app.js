@@ -24,6 +24,11 @@
 //   }
 // }
 
-import { Button } from './button.js'
+import { Menu } from './menu.js'
 
-document.body.appendChild(Button())
+const newDiv = document.createElement('div')
+
+newDiv.setAttribute('class', 'app')
+newDiv.appendChild(Menu())
+
+document.body.appendChild(newDiv)

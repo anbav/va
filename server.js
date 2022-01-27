@@ -27,11 +27,24 @@ const init = async () => {
   })
 
   server.route({
+    path: '/src/{path*}',
     method: 'GET',
-    path: '/js/{param*}',
     handler: {
       directory: {
-        path: '../js'
+        path: '../src',
+        listing: false,
+        index: false
+      }
+  }})
+
+  server.route({
+    method: 'GET',
+    path: '/assets/{param*}',
+    handler: {
+      directory: {
+        path: '../assets',
+        listing: false,
+        index: false
       }
     }
   })

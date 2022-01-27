@@ -1,0 +1,30 @@
+@font-face {
+  font-family: 'Victorianna Thin';
+  src: url('../../assets/Thin.ttf') format('truetype')
+}
+@font-face {
+  font-family: 'Victorianna Thin Italic';
+  src: url('../../assets/ThinItalic.ttf') format('truetype')
+}
+
+html {
+  font-family: 'Victorianna Thin Italic';
+}
+
+.app {
+  margin: 0 auto;
+}
+
+.center-align {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.vibu {
+  font-size: 2.5em;
+  width: 480px;
+
+  padding-top: 8%;
+}
