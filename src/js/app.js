@@ -1,8 +1,8 @@
 import { Menu } from './menu.js'
 
-const newDiv = document.createElement('div')
+const app = document.createElement('div')
 
-newDiv.setAttribute('class', 'app')
-newDiv.appendChild(Menu())
+app.setAttribute('class', 'app')
+app.appendChild(Menu())
 
-document.body.appendChild(newDiv)
+document.body.appendChild(app)

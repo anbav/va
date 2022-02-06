@@ -1,35 +1,38 @@
+const open = '../../assets/open.svg'
+const closed = '../../assets/closed.svg'
+
 const MenuItems = () => {
   const wrapper = document.createElement('div')
 
   const items = ['info', 'tools', 'sup']
 
-  let active = 'info'
-
-  const createButton = (id) => {
+  const createButton = (item) => {
     const button = document.createElement('div')
-    const dial = document.createElement('button')
+    const dial = document.createElement('div')
     const text = document.createElement('p')
 
+    let active = 'info'
+
     button.setAttribute('class', 'menu-item')
-    button.onclick = () => { 
-      items.filter(i => i !== id).forEach(item => {
-        let el = document.querySelector(`#${item}`)
-        if (el.classList.contains('dial-active')) {
-          el.classList.remove('dial-active')
-          el.classList.add('dial')
+    button.onclick = () => {
+      active = button.firstChild.id
+
+      items.forEach(i => {
+        let el = document.querySelector(`#${i}`)
+        console.log(el.id)
+        if (el.id === active) {
+          el.innerHTML = `<img class='dial' src=${open} alt='menu-btn'/>`
         } else {
-          let el = document.querySelector(`#${id}`)
-          el.classList.remove('dial')
-          el.classList.add('dial-active')
+          el.innerHTML = `<img class='dial' src=${closed} alt='menu-btn'/>`
         }
       })
     }
 
-    dial.setAttribute('id', id)
-    dial.setAttribute('class', (active === id) ? 'dial-active' : 'dial')
+    dial.setAttribute('id', item)
+    dial.innerHTML = `<img class='dial' src=${(active === item) ? open : closed} alt='menu-btn'/>`
 
     text.setAttribute('class', 'button-text')
-    text.innerHTML = `${id === 'sup' ? 'sup?' : id}`
+    text.innerHTML = `${(item === 'sup') ? 'sup?' : item}`
 
     button.appendChild(dial)
     button.appendChild(text)
@@ -48,14 +51,15 @@ const MenuItems = () => {
 
 export const Menu = () => {
   const centerdDiv = document.createElement('div')
-  const newDiv = document.createElement('div')
+  const card = document.createElement('div')
   const menu = MenuItems()
 
-  newDiv.innerHTML = `<p class='vibu-text'>vibu anbarasan is a designer, developer based out of nyc.</p>`
-  newDiv.setAttribute('class', 'vibu')
+  card.innerHTML = 
+    `<p class='vibu-text'>vibu anbarasan is a <span class='vibu-hl'>designer</span>, <span class='vibu-hl'>developer</span> based out of nyc.</p>`
+  card.setAttribute('class', 'vibu')
 
-  centerdDiv.setAttribute('class', 'center-align')
-  centerdDiv.appendChild(newDiv)
+  centerdDiv.setAttribute('class', 'center-align-body')
+  centerdDiv.appendChild(card)
   centerdDiv.appendChild(menu)
 
   return centerdDiv
