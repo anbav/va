@@ -19,17 +19,18 @@ const MenuItems = () => {
 
       items.forEach(i => {
         let el = document.querySelector(`#${i}`)
-        console.log(el.id)
+        
         if (el.id === active) {
-          el.innerHTML = `<img class='dial' src=${open} alt='menu-btn'/>`
+          el.innerHTML = `<img src=${open} alt='menu-btn'/>`
         } else {
-          el.innerHTML = `<img class='dial' src=${closed} alt='menu-btn'/>`
+          el.innerHTML = `<img src=${closed} alt='menu-btn'/>`
         }
       })
     }
 
     dial.setAttribute('id', item)
-    dial.innerHTML = `<img class='dial' src=${(active === item) ? open : closed} alt='menu-btn'/>`
+    dial.setAttribute('class', 'dial')
+    dial.innerHTML = `<img src=${(active === item) ? open : closed} alt='menu-btn'/>`
 
     text.setAttribute('class', 'button-text')
     text.innerHTML = `${(item === 'sup') ? 'sup?' : item}`

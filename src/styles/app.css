@@ -16,7 +16,7 @@ html {
 }
 
 .center-align-body {
-  width: 600px;
+  width: 650px;
 
   margin: 0 auto;
 }
@@ -24,16 +24,11 @@ html {
 .center-align {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: space-evenly;
 }
 
 .menu-item {
-  display: flex;
-  align-items: center;
-
-  width: 110px;
-
-  margin: 10px 0 10px 2px;
+  width: 100px;
 }
 
 .vibu {
@@ -63,11 +58,17 @@ html {
 }
 
 .dial {
-  background: transparent;
-  margin: 0 10px 0 0;
+  display: inline-block;
+
+  width: 23px;
+  height: 23px;
+
 }
 
 .button-text {
+  display: inline-block;
+
   font-size: 1.45em;
-  padding: 0 0 0 10px;
+
+  padding: 0 0 0 18px;
 }
