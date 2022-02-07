@@ -1,7 +1,7 @@
-const open = '../../assets/open.svg'
-const closed = '../../assets/closed.svg'
-
 const MenuItems = () => {
+  const open = '../../assets/open.svg'
+  const closed = '../../assets/closed.svg'
+
   const wrapper = document.createElement('div')
 
   const items = ['info', 'tools', 'sup']
@@ -56,7 +56,7 @@ export const Menu = () => {
   const menu = MenuItems()
 
   card.innerHTML = 
-    `<p class='vibu-text'>vibu anbarasan is a <span class='vibu-hl'>designer</span>, <span class='vibu-hl'>developer</span> based out of nyc.</p>`
+    `<p class='vibu-text'>vibu anbarasan is a <span class='vibu-des'>designer</span>, <span class='vibu-dev'>developer</span> based out of nyc.</p>`
   card.setAttribute('class', 'vibu')
 
   centerdDiv.setAttribute('class', 'center-align-body')
