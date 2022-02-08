@@ -1,8 +1,12 @@
+const CopyPanel = (active) => {
+  //returns copy element for active menuItem
+}
+
 const MenuItems = () => {
   const open = '../../assets/open.svg'
   const closed = '../../assets/closed.svg'
 
-  const wrapper = document.createElement('div')
+  const menuItems = document.createElement('div')
 
   const items = ['info', 'tools', 'sup']
 
@@ -41,27 +45,27 @@ const MenuItems = () => {
     return button
   }
 
-  wrapper.setAttribute('class', 'center-align')
+  menuItems.setAttribute('class', 'center-align')
 
   items.map(item => createButton(item)).forEach(i => {
-    wrapper.appendChild(i)
+    menuItems.appendChild(i)
   })
 
-  return wrapper
+  return menuItems
 }
 
-export const Menu = () => {
-  const centerdDiv = document.createElement('div')
+export const Page = () => {
+  const page = document.createElement('div')
   const card = document.createElement('div')
   const menu = MenuItems()
 
   card.innerHTML = 
-    `<p class='vibu-text'>vibu anbarasan is a <span class='vibu-des'>designer</span>, <span class='vibu-dev'>developer</span> based out of nyc.</p>`
+    `<p class='vibu-text'>vibu anbarasan is a designer, developer based out of nyc.</p>`
   card.setAttribute('class', 'vibu')
 
-  centerdDiv.setAttribute('class', 'center-align-body')
-  centerdDiv.appendChild(card)
-  centerdDiv.appendChild(menu)
+  page.setAttribute('class', 'center-align-body')
+  page.appendChild(card)
+  page.appendChild(menu)
 
-  return centerdDiv
+  return page
 }

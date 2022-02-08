@@ -9,6 +9,8 @@
 
 html {
   font-family: 'Victorianna Thin Italic';
+  
+  background-color: #fcfcfc;
 }
 
 .app {
@@ -49,21 +51,6 @@ html {
 
   width: 580px
 }
-
-.vibu-des {
-  background: #d5e2eb;
-  backdrop-filter: blur(2em);
-
-  border-radius: 15px;
-}
-
-.vibu-dev {
-  background: #d8ebd5;
-  backdrop-filter: blur(2em);
-
-  border-radius: 15px;
-}
-
 
 .dial {
   display: inline-block;

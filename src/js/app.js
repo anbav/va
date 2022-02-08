@@ -1,8 +1,8 @@
-import { Menu } from './menu.js'
+import { Page } from './page.js'
 
 const app = document.createElement('div')
 
 app.setAttribute('class', 'app')
-app.appendChild(Menu())
+app.appendChild(Page())
 
 document.body.appendChild(app)
