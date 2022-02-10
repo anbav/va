@@ -10,8 +10,10 @@
 html {
   font-family: 'Victorianna Thin Italic';
   
-  background-color: #fcfcfc;
+  background: url('../../assets/bg.svg') no-repeat center center fixed;
+  background-size: cover;
 }
+
 
 .app {
   margin: 0 auto;
@@ -27,6 +29,11 @@ html {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+}
+
+.center-align-menu {
+  display: flex;
+  justify-content: space-between;
 }
 
 .menu-item {
@@ -50,6 +57,13 @@ html {
   letter-spacing: .13rem;
 
   width: 580px
+}
+
+.vibu-hl {
+  background: #e6e7e6;
+  backdrop-filter: blur(2em);
+
+  border-radius: 15px;
 }
 
 .dial {
