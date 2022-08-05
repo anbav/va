@@ -5,20 +5,17 @@ const satellite = '../../assets/satellite.svg'
 const PanelCopy = (active) => {
   const info = document.createElement('div')
   info.innerHTML =
-    `<p class='vibu-hl'>email: vibu.anbarasan@gmail.com<br>ig: @v.bu.a</p>`
+    `<p class='vibu-hl'>item 1</p>`
 
   const tools = document.createElement('div')
   tools.innerHTML =
-    `<p class='vibu-hl'>prioritizing the personal, my design/dev cycle begins with the experience.</p>
-    <p>React, MUI, vanilla JS,</p>`
+    `<p class='vibu-hl'>item 2</p>`
 
   const sup = document.createElement('div')
   sup.innerHTML =
-    `<p>working mostly, watching anime and climbing during free time.</p>
-    <p>-- February 9, 2022</p>
-    <img src=${satellite} alt='satellite'>`
+    `<p class='vibu-hl'>item 3</p>`
   
-  return(
+  return (
     active === 'info' ?
       info
     : active === 'tools' ?
