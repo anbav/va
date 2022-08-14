@@ -11,12 +11,13 @@ html {
   font-family: 'Victorianna Thin Italic';
 }
 
+p {
+  font-size: 1.7em;
 
-.app {
-  margin: 0 auto;
+  width: 580px
 }
 
-.center-align-body {
+.page {
   width: 650px;
 
   margin: 0 auto;
@@ -28,53 +29,21 @@ html {
   justify-content: space-evenly;
 }
 
-.center-align-menu {
+.text {
   display: flex;
-  justify-content: space-between;
-}
-
-.menu-item {
-  width: 150px;
-}
-
-.vibu {
-  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 
   width: 100%;
   height: 100%;
 
-  padding: 10% 0 8% 0;
+  padding: 8% 0 8% 0;
   margin: 0 0 2% 0;
 }
 
-.vibu-text {
-  font-size: 2em;
-
-  width: 580px
-}
-
-.vibu-hl {
+.text-hl {
   background: #e6e7e6;
-  backdrop-filter: blur(2em);
 
   border-radius: 15px;
-}
-
-.dial {
-  display: inline-block;
-
-  width: 23px;
-  height: 23px;
-
-  margin: 2px 0 2px 0;
-}
-
-.button-text {
-  display: inline-block;
-
-  font-size: 1.73em;
-
-  padding: 0 0 0 18px;
 }
