@@ -1,25 +1,11 @@
-@font-face {
-  font-family: 'Victorianna Thin';
-  src: url('../../assets/Thin.ttf') format('truetype')
-}
-@font-face {
-  font-family: 'Victorianna Thin Italic';
-  src: url('../../assets/ThinItalic.ttf') format('truetype')
-}
-
 html {
-  font-family: 'Victorianna Thin Italic';
-}
-
-p {
-  font-size: 1.7em;
-
-  width: 580px
+  font-family: 'Helvetica';
 }
 
 .center-align {
   height: 650px;
-  
+
   display: flex;
+  align-items: center;
   justify-content: center;
 }
