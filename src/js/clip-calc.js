@@ -1,4 +1,6 @@
 (function() {
+  let temp = []
+
   class ClipCalc extends HTMLElement {
     constructor() {
       super()
@@ -13,7 +15,7 @@
         [1, 2, 3, '/'],
         [4, 5, 6, '*'],
         [7, 8, 9, '+'],
-        ['.', 0, '%', '-']
+        ['.', 0, '=', '-']
       ]
 
       clipCalc.innerHTML =
@@ -96,7 +98,7 @@
                   <div class='input-modal-row'>
                     ${inputRow.map(inputValue => `
                       <input class='input-modal-btn'
-                        ${(typeof inputValue) === 'string' && `style='background-color: #d1e5ff;'`}
+                        ${['/', '*', '+', '-', '='].includes(inputValue) && `style='background-color: #d1e5ff;'`}
                         type='button'
                         value=${inputValue}></input>
                     `).join('')}
@@ -110,7 +112,7 @@
       //binding methods
       this.openCalc = this.openCalc.bind(this)
       this.allClear = this.allClear.bind(this)
-      this.inputValue = this.inputValue.bind(this)
+      this.handleInput = this.handleInput.bind(this)
       
       shadow.appendChild(clipCalc)
     }
@@ -127,39 +129,41 @@
       display.style.visibility = (value === 'calc' ? 'visible' : 'hidden')
     }
 
-    allClear(e) {
+    allClear() {
       const displayValue = this.shadowRoot.querySelector('.display-value')
       displayValue.innerHTML = ''
     }
 
-    inputValue(e) {
+    handleInput(e) {
       const displayValue = this.shadowRoot.querySelector('.display-value')
       const currentValue = displayValue.innerHTML
 
-      let temp = []
-
-      if (currentValue) {
-        if (isNaN(e.target.value) && (e.target.value !== '.')) {
-          if (!currentValue.endsWith('.')) {
-            console.log(e.target.value)
-          }
-          temp.push(currentValue)
-        } else {
+      if (!isNaN(e.target.value) || (e.target.value === '.')) {
+        if (currentValue) {
           if (e.target.value !== '.') {
             displayValue.innerHTML = currentValue + e.target.value
-          } else {
-            if (!currentValue.includes('.')) {
-              displayValue.innerHTML = currentValue + e.target.value
-            }
           }
+      
+          if (!currentValue.includes('.')) {
+            displayValue.innerHTML = currentValue + e.target.value
+          }
+        } else {
+          displayValue.innerHTML = e.target.value
         }
       } else {
-        if (!isNaN(e.target.value) || e.target.value === '.') {
-          displayValue.innerHTML = e.target.value
-          temp.push(e.target.value)
+        if (currentValue && !currentValue.endsWith('.')) {
+          if (temp.some(op => ['/', '*', '+', '-', '='].includes(op)) && ['/', '*', '+', '-', '='].includes(e.target.value)) {
+            temp.push(displayValue.innerHTML)
+            displayValue.innerHTML = eval(`${temp[0]}${temp[1]}${temp[2]}`)
+            //create new expression
+            temp = []
+            temp.push(displayValue.innerHTML, e.target.value)
+          } else {
+            temp.push(currentValue, e.target.value)
+            this.allClear()
+          }
         }
       }
-      console.log(temp)
     }
 
     connectedCallback() {
@@ -171,7 +175,7 @@
       acBtn.addEventListener('click', this.allClear, false)
 
       const inputValueBtns = this.shadowRoot.querySelectorAll('.input-modal-btn')
-      inputValueBtns.forEach(btn => btn.addEventListener('click', this.inputValue, false))
+      inputValueBtns.forEach(btn => btn.addEventListener('click', this.handleInput, false))
     }
 
   }
