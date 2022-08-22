@@ -112,6 +112,7 @@
       //binding methods
       this.openCalc = this.openCalc.bind(this)
       this.allClear = this.allClear.bind(this)
+      this.evalExpr = this.evalExpr.bind(this)
       this.handleInput = this.handleInput.bind(this)
       
       shadow.appendChild(clipCalc)
@@ -132,6 +133,19 @@
     allClear() {
       const displayValue = this.shadowRoot.querySelector('.display-value')
       displayValue.innerHTML = ''
+      temp = []
+    }
+
+    evalExpr(value) {
+      const displayValue = this.shadowRoot.querySelector('.display-value')
+
+      if (value === '=' && temp.length === 2) {
+        temp.push(displayValue.innerHTML)
+        displayValue.innerHTML = eval(`${temp[0]}${temp[1]}${temp[2]}`)
+        //clear for new expression
+        temp = []
+        temp.push(displayValue.innerHTML)
+      }
     }
 
     handleInput(e) {
@@ -153,14 +167,15 @@
       } else {
         if (currentValue && !currentValue.endsWith('.')) {
           if (temp.some(op => ['/', '*', '+', '-', '='].includes(op)) && ['/', '*', '+', '-', '='].includes(e.target.value)) {
-            temp.push(displayValue.innerHTML)
-            displayValue.innerHTML = eval(`${temp[0]}${temp[1]}${temp[2]}`)
-            //create new expression
-            temp = []
-            temp.push(displayValue.innerHTML, e.target.value)
+            this.evalExpr(e.target.value)
           } else {
-            temp.push(currentValue, e.target.value)
-            this.allClear()
+            if (temp.length === 1) {
+              temp.push(e.target.value)
+              displayValue.innerHTML = ''
+            } else {
+              temp.push(currentValue, e.target.value)
+              displayValue.innerHTML = ''
+            }
           }
         }
       }
