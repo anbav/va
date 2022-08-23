@@ -21,6 +21,10 @@
       clipCalc.innerHTML =
         `
           <style>
+            input {
+              color: black;
+              cursor: pointer;
+            }
             .calc {
               width: 166px;
               height: 45px;
@@ -32,13 +36,11 @@
               align-items: center;
             }
             .open-calc-btn {
-              width: 166px;
+              width: 60px;
               height: 45px;
               font-size: 1.2rem;
-              border-radius: 22.5px;
               border: 0;
               background-color: #d8d8d8;
-              cursor: pointer;
             }
             .open-calc {
               width: 153px;
@@ -57,10 +59,8 @@
             .ac-btn {
               background: none;
               font-size: 1rem;
-              border-radius: 22.5px;
               border: 0;
               padding: 1px 6px;
-              cursor: pointer;
             }
             .display-value {
               font-size: 1rem;
@@ -83,7 +83,6 @@
               width: 30px;
               height: 30px;
               background-color: #f6f6f6;
-              cursor: pointer;
             }
           </style>
           <div class='calc'>
@@ -144,7 +143,7 @@
         displayValue.innerHTML = eval(`${temp[0]}${temp[1]}${temp[2]}`)
         //clear for new expression
         temp = []
-        temp.push(displayValue.innerHTML)
+        temp.push(displayValue.innerHTML, value)
       }
     }
 
@@ -153,12 +152,17 @@
       const currentValue = displayValue.innerHTML
 
       if (!isNaN(e.target.value) || (e.target.value === '.')) {
-        if (currentValue) {
+        if (temp.includes('=')) {
+          temp = []
+          displayValue.innerHTML = e.target.value
+          temp.push(displayValue.innerHTML)
+        } else if (currentValue) {
           if (e.target.value !== '.') {
             displayValue.innerHTML = currentValue + e.target.value
           }
       
           if (!currentValue.includes('.')) {
+            console.log('here')
             displayValue.innerHTML = currentValue + e.target.value
           }
         } else {
@@ -166,19 +170,21 @@
         }
       } else {
         if (currentValue && !currentValue.endsWith('.')) {
-          if (temp.some(op => ['/', '*', '+', '-', '='].includes(op)) && ['/', '*', '+', '-', '='].includes(e.target.value)) {
+          if (temp.some(op => ['/', '*', '+', '-'].includes(op)) && e.target.value === '=') {
             this.evalExpr(e.target.value)
           } else {
             if (temp.length === 1) {
               temp.push(e.target.value)
               displayValue.innerHTML = ''
             } else {
+              temp = []
               temp.push(currentValue, e.target.value)
               displayValue.innerHTML = ''
             }
           }
         }
       }
+      console.log(temp)
     }
 
     connectedCallback() {

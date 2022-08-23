@@ -27,14 +27,6 @@ const init = async () => {
   })
 
   server.route({
-    method: 'GET',
-    path: '/books',
-    handler: (request, h) => {
-      return h.file('books.html')
-    }
-  })
-
-  server.route({
     path: '/src/{path*}',
     method: 'GET',
     handler: {
