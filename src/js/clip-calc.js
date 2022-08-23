@@ -36,7 +36,7 @@
               align-items: center;
             }
             .open-calc-btn {
-              width: 60px;
+              width: 100px;
               height: 45px;
               font-size: 1.2rem;
               border: 0;
