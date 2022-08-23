@@ -41,6 +41,7 @@
               font-size: 1.2rem;
               border: 0;
               background-color: #d8d8d8;
+              text-align: center;
             }
             .open-calc {
               width: 153px;
