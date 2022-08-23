@@ -163,7 +163,6 @@
           }
       
           if (!currentValue.includes('.')) {
-            console.log('here')
             displayValue.innerHTML = currentValue + e.target.value
           }
         } else {
@@ -185,7 +184,6 @@
           }
         }
       }
-      console.log(temp)
     }
 
     connectedCallback() {
