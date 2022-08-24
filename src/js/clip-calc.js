@@ -141,7 +141,7 @@
 
       if (value === '=' && temp.length === 2) {
         temp.push(displayValue.innerHTML)
-        displayValue.innerHTML = eval(`${temp[0]}${temp[1]}${temp[2]}`)
+        displayValue.innerHTML = Math.round(eval(`${temp[0]}${temp[1]}${temp[2]}`) * 100)/100
         //clear for new expression
         temp = []
         temp.push(displayValue.innerHTML, value)
