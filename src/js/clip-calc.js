@@ -113,6 +113,8 @@
       this.openCalc = this.openCalc.bind(this)
       this.allClear = this.allClear.bind(this)
       this.evalExpr = this.evalExpr.bind(this)
+      this.handleNums = this.handleNums.bind(this)
+      this.handleOps = this.handleOps.bind(this)
       this.handleInput = this.handleInput.bind(this)
       
       shadow.appendChild(clipCalc)
@@ -141,48 +143,59 @@
 
       if (value === '=' && temp.length === 2) {
         temp.push(displayValue.innerHTML)
-        displayValue.innerHTML = Math.round(eval(`${temp[0]}${temp[1]}${temp[2]}`) * 100)/100
+        displayValue.innerHTML = Math.round(eval(`${temp[0]}${temp[1]}${temp[2]}`)* 100) / 100
         //clear for new expression
         temp = []
         temp.push(displayValue.innerHTML, value)
       }
     }
 
-    handleInput(e) {
+    handleNums(value) {
       const displayValue = this.shadowRoot.querySelector('.display-value')
       const currentValue = displayValue.innerHTML
 
-      if (!isNaN(e.target.value) || (e.target.value === '.')) {
-        if (temp.includes('=')) {
-          temp = []
-          displayValue.innerHTML = e.target.value
-          temp.push(displayValue.innerHTML)
-        } else if (currentValue) {
-          if (e.target.value !== '.') {
-            displayValue.innerHTML = currentValue + e.target.value
-          }
-      
-          if (!currentValue.includes('.')) {
-            displayValue.innerHTML = currentValue + e.target.value
-          }
-        } else {
-          displayValue.innerHTML = e.target.value
+      if (temp.includes('=')) {
+        temp = []
+        displayValue.innerHTML = value
+        temp.push(displayValue.innerHTML)
+      } else if (currentValue) {
+        if (value !== '.') {
+          displayValue.innerHTML = currentValue + value
+        }
+    
+        if (!currentValue.includes('.')) {
+          displayValue.innerHTML = currentValue + value
         }
       } else {
-        if (currentValue && !currentValue.endsWith('.')) {
-          if (temp.some(op => ['/', '*', '+', '-'].includes(op)) && e.target.value === '=') {
-            this.evalExpr(e.target.value)
+        displayValue.innerHTML = value
+      }
+    }
+
+    handleOps(value) {
+      const displayValue = this.shadowRoot.querySelector('.display-value')
+      const currentValue = displayValue.innerHTML
+
+      if (currentValue && !currentValue.endsWith('.')) {
+        if (temp.some(op => ['/', '*', '+', '-'].includes(op)) && value === '=') {
+          this.evalExpr(value)
+        } else {
+          if (temp.length === 1) {
+            temp.push(value)
+            displayValue.innerHTML = ''
           } else {
-            if (temp.length === 1) {
-              temp.push(e.target.value)
-              displayValue.innerHTML = ''
-            } else {
-              temp = []
-              temp.push(currentValue, e.target.value)
-              displayValue.innerHTML = ''
-            }
+            temp = []
+            temp.push(currentValue, value)
+            displayValue.innerHTML = ''
           }
         }
+      }
+    }
+
+    handleInput(e) {
+      if (!isNaN(e.target.value) || (e.target.value === '.')) {
+        this.handleNums(e.target.value)
+      } else {
+        this.handleOps(e.target.value)
       }
     }
 

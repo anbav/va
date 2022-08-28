@@ -5,13 +5,32 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>va</title>
-  <link rel="stylesheet" href="src/styles/app.css" />
+  <link rel="stylesheet" href="src/styles/main.css" />
 </head>
 <body>
-  <div id="root"></div>
   <div class="center-align">
-    <div style="height: 200px">
-      <clip-calc />
+    <div class="bio">
+      <h1>Vibu Anbarasan</h1>
+      <p>I’m a designer, developer based out of NYC.</p>
+      <p>Currently interested in native tooling and Web Components.</p>
+      <p>This calculator element below is a pure Web Component, code for it can be found 
+        <span style="text-decoration: underline;">
+          <a 
+            href="https://github.com/anbav/va/blob/main/src/js/clip-calc.js"
+            target="_blank"
+          >here</a></span>.
+      </p>
+    </div>
+    <div class="calc">
+      <div class="calc-text">
+        <p>6.4</p>
+        <p>x 9.5</p>
+      </div>
+      <clip-calc></clip-calc>
+    </div>
+    <div class="links">
+      <a href="mailto:vibu.anbarasan@gmail.com" target="_blank">email</a>
+      <a href="https://github.com/anbav" target="_blank"r>github</a>
     </div>
   </div>
   <!-- JS dependencies-->
