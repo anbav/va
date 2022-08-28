@@ -182,7 +182,9 @@
           if (temp.length === 1) {
             temp.push(value)
             displayValue.innerHTML = ''
-          } else {
+          }
+          
+          if (value !== '=') {
             temp = []
             temp.push(currentValue, value)
             displayValue.innerHTML = ''
